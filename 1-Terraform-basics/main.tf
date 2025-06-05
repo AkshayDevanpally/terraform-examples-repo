@@ -13,4 +13,4 @@ provider "aws" {
   region     = "us-east-1"          # AWS region where resources will be deployed
   version    = "~> 5.45.0"          # Use the latest patch/minor version under 6.0.0
 }
-
+#adding aws secret key later
