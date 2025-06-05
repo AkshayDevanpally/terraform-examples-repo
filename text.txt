@@ -1,0 +1,1 @@
+this will contain important creds for initial terraform , notes taking
