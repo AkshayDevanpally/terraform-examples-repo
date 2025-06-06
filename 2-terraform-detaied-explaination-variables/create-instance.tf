@@ -17,4 +17,6 @@ resource "aws_instance" "MyFirstInstnace" {
   tags = {
     Name = "demoinstnce-${count.index}"  #Dynamically assign name like demoinstnce-0, demoinstnce-1
   }
+  security_groups = var.Security_Group  # take the security groups from variables file
+ 
 }
