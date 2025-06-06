@@ -12,7 +12,7 @@
 
 resource "aws_instance" "MyFirstInstnace" {
   count         = 1                        # Create one EC2 instances using the same configuration
-  ami           = "ami-0e9bbd70d26d7cf4f"  # Base image for EC2 instance (must be valid in the region)
+  ami           = lookup(var.AMIS, var.AWS_REGION)  # look for AMI's mapped in variables file
   instance_type = "t2.micro"               #Free tier eligible and cost-effective instance type
   tags = {
     Name = "demoinstnce-${count.index}"  #Dynamically assign name like demoinstnce-0, demoinstnce-1
