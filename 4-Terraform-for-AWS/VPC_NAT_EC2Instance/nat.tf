@@ -13,7 +13,7 @@
 
 
 resource "aws_eip" "levelup-nat" {
-  vpc = true                          # Allocate an Elastic IP for VPC use
+  domain = "vpc"                          # Allocate an Elastic IP for VPC use
 }
 
 resource "aws_nat_gateway" "levelup-nat-gw" {
