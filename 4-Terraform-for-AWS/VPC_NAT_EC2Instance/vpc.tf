@@ -19,8 +19,7 @@ resource "aws_vpc" "levelupvpc" {
   instance_tenancy     = "default"            # Default tenancy means shared hardware
   enable_dns_support   = "true"               # Allows instances to resolve DNS names
   enable_dns_hostnames = "true"               # Required if using public DNS for EC2
-  enable_classiclink   = "false"              # Not using ClassicLink (for legacy setups)
-
+ 
   tags = {
     Name = "levelupvpc"                       # Name tag for the VPC
   }
