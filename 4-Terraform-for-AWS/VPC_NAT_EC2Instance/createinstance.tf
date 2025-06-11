@@ -29,3 +29,6 @@ resource "aws_instance" "MyFirstInstance" {
   }
 }
 
+
+# execute command to login via ssh:  ssh 3.86.111.243 -l ec2-user -i levelup_key
+#chmod 400 levelup_key to give proper perission to ssh key file
