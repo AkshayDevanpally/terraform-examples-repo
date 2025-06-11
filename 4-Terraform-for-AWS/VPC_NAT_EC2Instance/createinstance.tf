@@ -17,7 +17,7 @@ resource "aws_key_pair" "levelup_key" {
 
 # Create an EC2 instance using a fetched Amazon Linux 2 AMI and the above key pair.
 resource "aws_instance" "MyFirstInstance" {
-  ami                         = data.aws_ami.amazon_linux_2.id       # Use the most recent Amazon Linux 2 AMI from a data source
+  ami                         = lookup(var.AMIS, var.AWS_REGION)       # Use the most recent Amazon Linux 2 AMI from a data source
   instance_type               = "t2.micro"                            # Use a free-tier eligible instance type
   key_name                    = aws_key_pair.levelup_key.key_name     # Reference the key pair defined earlier
 
