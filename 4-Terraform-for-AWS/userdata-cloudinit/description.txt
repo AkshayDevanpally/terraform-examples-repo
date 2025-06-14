@@ -1,0 +1,8 @@
+this is example of terraform apache userdata deployment usin cloudinit i.ie cloud condif files for aws
+we have init.cfg containing the commands to install apache at the start of launch via cloud configuration.
+
+both the apprach are good
+1] userdata via bashscript
+2] userdata via cloudinit
+
+
