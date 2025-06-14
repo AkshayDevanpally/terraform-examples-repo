@@ -1,0 +1,6 @@
+this uses userdata using bash script
+apache is installed at the launch of the ec2 instance using userdata
+this script will create key pair values and user data object id in terraform plan
+
+post launch we will be able to view the apache template on the public ip on aws
+
