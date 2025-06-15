@@ -37,7 +37,7 @@ resource "aws_key_pair" "levelup_key" {
 # --------------------------------------------------------------------------------------------
 resource "aws_autoscaling_group" "levelup-autoscaling" {
   name                      = "levelup-autoscaling"             # Name of the Auto Scaling Group.
-  vpc_zone_identifier       = ["subnet-9e0ad9f5", "subnet-d7a6afad"] # List of subnets to launch instances into.
+  vpc_zone_identifier       = ["us-east-1b", "us-east-1a"] # List of subnets to launch instances into.
   min_size                  = 1                                 # Minimum number of instances.
   max_size                  = 2                                 # Maximum number of instances.
   desired_capacity          = 1                                 # Desired number of instances at launch.
