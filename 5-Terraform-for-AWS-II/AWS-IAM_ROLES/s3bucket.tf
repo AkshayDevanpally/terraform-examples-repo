@@ -9,10 +9,18 @@
 # --------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "levelup-s3bucket" {
   bucket = "levelup-bucket-145"   # Unique bucket name globally
-  acl    = "private"              # Access control set to private (owner only)
 
   tags = {
     Name = "levelup-bucket-141"   # Tag the bucket with a friendly name
   }
+}
+
+# --------------------------------------------------------------------------------------------
+# S3 Bucket ACL
+# Set the bucket access to private using a separate ACL resource.
+# --------------------------------------------------------------------------------------------
+resource "aws_s3_bucket_acl" "levelup-s3bucket-acl" {
+  bucket = aws_s3_bucket.levelup-s3bucket.id
+  acl    = "private"
 }
 
