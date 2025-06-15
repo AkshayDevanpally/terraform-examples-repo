@@ -27,7 +27,7 @@ This setup provisions a scalable and self-adjusting infrastructure that maintain
 
 Below is a high-level architecture diagram showing how Terraform provisions AWS Auto Scaling and integrates with CloudWatch:
 
-![Terraform Auto Scaling Architecture](Brainboard-aws-autoscaling-and-cloud-watch-using-terraform.png)
+![Terraform Auto Scaling Architecture](Brainboard - aws autoscaling and cloud watch using terraform.png)
 
 ---
 
