@@ -25,7 +25,7 @@ This setup demonstrates how an EC2 instance can securely interact with an S3 buc
 
 Below is a high-level architecture diagram showing the interaction between IAM, EC2, and S3:
 
-![Terraform IAM Roles and S3 Architecture](Brainboard%20-%20aws%20iam%20roles%20and%20s3%20bucket.png)
+![Terraform IAM Roles and S3 Architecture](Brainboard-aws-iam-roles-and-s3-bucket.png)
 
 ---
 
@@ -33,9 +33,9 @@ Below is a high-level architecture diagram showing the interaction between IAM, 
 
 You can watch the project in action in the following video:
 
-🔗 [Watch Demo Video via GitHub Issue](https://github.com/user-attachments/assets/7d9e2980-783a-48a4-a909-52408b11a0ab)
+🔗 [Watch Demo Video via GitHub Issue](https://github.com/user-attachments/assets/17f5ae2f-84e4-4756-a5ea-e47740723111)
 
-[![Watch Terraform RDS Video](Brainboard%20-%20aws%20iam%20roles%20and%20s3%20bucket.png)](https://github.com/user-attachments/assets/7d9e2980-783a-48a4-a909-52408b11a0ab)
+[![Watch Terraform RDS Video](Brainboard-aws-iam-roles-and-s3-bucket.png)](https://github.com/user-attachments/assets/17f5ae2f-84e4-4756-a5ea-e47740723111)
 
 ---
 
