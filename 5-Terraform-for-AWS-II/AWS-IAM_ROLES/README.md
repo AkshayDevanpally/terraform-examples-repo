@@ -35,13 +35,7 @@ You can watch the project in action in the following video:
 
 🔗 [Watch Demo Video via GitHub Issue](https://github.com/user-attachments/assets/7d9e2980-783a-48a4-a909-52408b11a0ab)
 
-If you uploaded the video directly to the repo, you can embed it like this:
-
-[Click to watch](./aws-iamroles.mp4)
-
-Or preview it via thumbnail:
-
-[![Watch Video](Brainboard%20-%20aws%20iam%20roles%20and%20s3%20bucket.png)](./aws-iamroles.mp4)
+[![Watch Terraform RDS Video](Brainboard%20-%20aws%20iam%20roles%20and%20s3%20bucket.png)](https://github.com/user-attachments/assets/7d9e2980-783a-48a4-a909-52408b11a0ab)
 
 ---
 
