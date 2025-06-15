@@ -46,8 +46,8 @@ resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
         "s3:*"
       ],
       "Resource": [
-        "arn:aws:s3:::levelup-bucket-145",
-        "arn:aws:s3:::levelup-bucket-145/*"
+        "arn:aws:s3:::levelup-bucket-trialpro",
+        "arn:aws:s3:::levelup-bucket-trialpro/*"
       ]
     }
   ]
