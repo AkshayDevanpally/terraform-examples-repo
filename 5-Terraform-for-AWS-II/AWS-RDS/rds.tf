@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "mariadb-subnets" {
 # --------------------------------------------------------------------------------------------
 resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
   name        = "levelup-mariadb-parameters"
-  family      = "mariadb10.11"
+  family      = "mariadb11.4"
   description = "MariaDB custom parameter group"
 
   parameter {
@@ -41,10 +41,10 @@ resource "aws_db_parameter_group" "levelup-mariadb-parameters" {
 resource "aws_db_instance" "levelup-mariadb" {
   allocated_storage        = 20                                # GB of storage
   engine                   = "mariadb"
-  engine_version           = "10.11.13"
-  instance_class           = "db.t2.micro"                     # Free-tier eligible
+  engine_version           = "11.4.5"
+  instance_class           = "db.t4g.micro"                     # Free-tier eligible
   identifier               = "mariadb"                         # Unique DB ID
-  db_name                     = "mariadb"                         # Default DB name
+  db_name                  = "mariadb"                         # Default DB name
   username                 = "root"                            # Master username
   password                 = "mariadb141"                      # Master password (consider using secrets!)
   db_subnet_group_name     = aws_db_subnet_group.mariadb-subnets.name
