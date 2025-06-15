@@ -21,6 +21,5 @@ resource "aws_s3_bucket" "levelup-s3bucket" {
 # --------------------------------------------------------------------------------------------
 resource "aws_s3_bucket_acl" "levelup-s3bucket-acl" {
   bucket = aws_s3_bucket.levelup-s3bucket.id
-  acl    = "private"
 }
 
