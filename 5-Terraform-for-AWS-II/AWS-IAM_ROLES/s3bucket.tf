@@ -8,10 +8,10 @@
 # Creates a private S3 bucket for storing objects securely.
 # --------------------------------------------------------------------------------------------
 resource "aws_s3_bucket" "levelup-s3bucket" {
-  bucket = "levelup-bucket-145"   # Unique bucket name globally
+  bucket = "levelup-bucket-trialpro"   # Unique bucket name globally
 
   tags = {
-    Name = "levelup-bucket-141"   # Tag the bucket with a friendly name
+    Name = "levelup-bucket-trialpro"   # Tag the bucket with a friendly name
   }
 }
 
