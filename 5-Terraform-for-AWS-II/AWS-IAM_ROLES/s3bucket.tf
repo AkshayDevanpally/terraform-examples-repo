@@ -26,3 +26,5 @@ resource "aws_s3_bucket_acl" "levelup-s3bucket-acl" {
   acl    = "private"                          # Restrict access to the bucket: only the owner has full control
 }
 
+#checks on acl to be used
+
