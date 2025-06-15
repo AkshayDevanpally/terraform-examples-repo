@@ -45,3 +45,9 @@ Or click the thumbnail below:
 - Custom parameter group and subnet group  
 - Credentials (username/password) defined in Terraform *(use secrets in production)*  
 
+### Usage
+
+```bash
+terraform init
+terraform plan
+terraform apply
