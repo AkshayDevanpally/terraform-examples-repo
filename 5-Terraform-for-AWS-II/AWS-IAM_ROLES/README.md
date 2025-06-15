@@ -46,3 +46,10 @@ You can watch the project in action in the following video:
 - **EC2 Instance**: Launched and associated with the IAM Role  
 - **User Data (optional)**: Can be added to install AWS CLI and test uploads to S3
 
+## 🚀 Usage
+
+```bash
+terraform init
+terraform plan
+terraform apply
+
