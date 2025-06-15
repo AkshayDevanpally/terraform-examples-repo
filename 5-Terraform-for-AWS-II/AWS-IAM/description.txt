@@ -1,0 +1,1 @@
+this containes terraform script to create Iam users and groups via terraform and assigning them a policiy.
