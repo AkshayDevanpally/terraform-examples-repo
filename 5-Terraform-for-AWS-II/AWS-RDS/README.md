@@ -22,11 +22,11 @@ Below is a high-level architecture diagram representing how the RDS setup is str
 
 ## 🎬 RDS Deployment Demo Video
 
-[Click here to watch the video demo](./terraform-aws-rds.mp4)
+[Click here to watch the video demo]([./terraform-aws-rds.mp4](https://github.com/user-attachments/assets/df958df9-65a1-49a4-947f-3aca5c6628c0))
 
 Or click the thumbnail below:
 
-[![Watch Terraform RDS Video](Brainboard%20-%20aws%20rds%20using%20terrafrom.png)](./terraform-aws-rds.mp4)
+[![Watch Terraform RDS Video]([Brainboard%20-%20aws%20rds%20using%20terrafrom.png](https://github.com/user-attachments/assets/df958df9-65a1-49a4-947f-3aca5c6628c0))](./terraform-aws-rds.mp4)
 
 ---
 
