@@ -7,8 +7,8 @@
 # Launch Configuration
 # Specifies the AMI, instance type, and key pair for launching EC2 instances in the ASG
 # --------------------------------------------------------------------------------------------
-resource "aws_launch_configuration" "levelup-launchconfig" {
-  name_prefix     = "levelup-launchconfig"                                # Prefix for launch config name
+resource "aws_launch_template" "levelup-launchtemplate" {
+  name_prefix     = "levelup-launchtemplate"                                # Prefix for launch config name
   image_id        = lookup(var.AMIS, var.AWS_REGION)                      # Dynamically pick AMI based on region
   instance_type   = "t2.micro"                                            # Free-tier eligible instance type
   key_name        = aws_key_pair.levelup_key.key_name                    # Associate SSH key for instance access
@@ -30,7 +30,7 @@ resource "aws_key_pair" "levelup_key" {
 resource "aws_autoscaling_group" "levelup-autoscaling" {
   name                      = "levelup-autoscaling"                       # ASG name
   vpc_zone_identifier       = ["subnet-9e0ad9f5", "subnet-d7a6afad"]      # List of subnet IDs
-  launch_configuration      = aws_launch_configuration.levelup-launchconfig.name  # Attach launch config
+  launch_configuration      = aws_launch_template.levelup-launchtemplate.name  # Attach launch config
   min_size                  = 1                                           # Minimum instance count
   max_size                  = 2                                           # Maximum instance count
   health_check_grace_period = 200                                         # Wait time before checking health
