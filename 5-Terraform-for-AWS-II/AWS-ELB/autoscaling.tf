@@ -8,7 +8,7 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   instance_type = "t2.micro"                                   # EC2 instance type (eligible under AWS free tier).
   key_name      = aws_key_pair.levelup_key.key_name            # Key pair used for SSH access to instances.
 
-  user_data = <<EOF
+  user_data_base64 = base64encode(<<EOF
 #!/bin/bash
 yum update -y
 yum install -y net-tools nginx
@@ -17,6 +17,7 @@ systemctl start nginx
 MYIP=$(hostname -I | awk '{print $1}')
 echo -e "Hello Team\nThis is my IP: \$MYIP" > /usr/share/nginx/html/index.html
 EOF
+  )
 
   # Attach the custom security group to the instance
   vpc_security_group_ids = [
