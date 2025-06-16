@@ -1,1 +1,1 @@
-{"ID":"63930f6d-ac01-9f0c-4a3d-80268c2db77d","Operation":"OperationTypePlan","Info":"","Who":"akshay@akshay-VirtualBox","Version":"1.12.1","Created":"2025-06-16T11:13:08.331967784Z","Path":"terraform.tfstate"}
+{"ID":"94f89067-aa4e-6045-741d-21a79358ebe5","Operation":"OperationTypeApply","Info":"","Who":"akshay@akshay-VirtualBox","Version":"1.12.1","Created":"2025-06-16T11:20:02.088527421Z","Path":"terraform.tfstate"}
