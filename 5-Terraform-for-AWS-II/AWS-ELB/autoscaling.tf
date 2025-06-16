@@ -19,7 +19,7 @@ echo -e "Hello Team\nThis is my IP: \$MYIP" > /usr/share/nginx/html/index.html
 EOF
 
   # Attach the custom security group to the instance
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.levelup-instance.id
   ]
 
