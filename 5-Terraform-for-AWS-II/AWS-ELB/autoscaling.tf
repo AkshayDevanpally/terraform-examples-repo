@@ -8,7 +8,7 @@ resource "aws_launch_template" "levelup-launchtemplate" {
   instance_type = "t2.micro"                                   # EC2 instance type (eligible under AWS free tier).
   key_name      = aws_key_pair.levelup_key.key_name            # Key pair used for SSH access to instances.
 
-  user_data_base64 = base64encode(<<EOF
+  user_data = base64encode(<<EOF
 #!/bin/bash
 yum update -y
 yum install -y net-tools nginx
