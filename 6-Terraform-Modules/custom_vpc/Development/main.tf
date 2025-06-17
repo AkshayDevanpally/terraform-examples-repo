@@ -6,14 +6,10 @@
 module "dev-vpc" {
   source = "../../custom_vpc"                                # Path to the custom VPC module (relative directory)
 
-  vpcname        = "dev01-vpc"                               # Unique name identifier for the VPC
-  cidr           = "10.0.2.0/24"                             # CIDR block for the VPC (choose according to your network plan)
-
-  enable_dns_support             = "true"                   # Enables internal DNS resolution (recommended)
-  enable_classiclink             = "false"                  # ClassicLink is deprecated—should remain false
-  enable_classiclink_dns_support = "false"                  # DNS support for ClassicLink (not needed unless ClassicLink is enabled)
-  enable_ipv6                    = "true"                   # Enables IPv6 support (Amazon will assign an IPv6 CIDR block)
-
-  vpcenvironment = "Development-Engineering"                # Used for environment tagging (e.g., dev, staging, prod)
+  vpcname              = "dev01-vpc"                         # Unique name identifier for the VPC
+  cidr                 = "10.0.2.0/24"                       # CIDR block for the VPC (choose according to your network plan)
+  enable_dns_support   = "true"                              # Enables internal DNS resolution (recommended)
+  enable_ipv6          = "true"                              # Enables IPv6 support (Amazon will assign an IPv6 CIDR block)
+  vpcenvironment       = "Development-Engineering"           # Used for environment tagging (e.g., dev, staging, prod)
 }
 
