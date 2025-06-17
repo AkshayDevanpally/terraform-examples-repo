@@ -17,7 +17,7 @@ variable "region" {
 # --------------------------------------------------------------------------------------------
 variable "public_key_path" {
   description = "Path to the SSH public key (.pub file) for the EC2 instance"
-  default     = "~/.ssh/levelup_key.pub"
+  default     = "levelup_key.pub"
 }
 
 # --------------------------------------------------------------------------------------------
