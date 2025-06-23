@@ -17,7 +17,8 @@ provider "aws" {
 # Uses the official Terraform AWS EC2 Instance module to manage EC2 instances.
 # --------------------------------------------------------------------------------------------
 module "ec2_cluster" {
-  source = "github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"  # Pulls module from GitHub
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 5.0"  # Use latest v5+ (as of June 2025)
 
   name           = "my-cluster"                 # Name prefix for instances
   ami            = "ami-0e9bbd70d26d7cf4f"      # Example Amazon Linux 2 AMI
@@ -25,7 +26,7 @@ module "ec2_cluster" {
   subnet_id      = "subnet-0ae34bdc2f72d96c3"   # Subnet where EC2 instances will be launched
 
   # Conditional instance count based on environment type
-  instance_count = var.environment == "Production" ? 2 : 1
+  count = var.environment == "Production" ? 2 : 1
 
   tags = {
     Terraform   = "true"
