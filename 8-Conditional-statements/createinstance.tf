@@ -25,7 +25,7 @@ module "ec2_cluster" {
   subnet_id      = "subnet-0ae34bdc2f72d96c3"   # Subnet where EC2 instances will be launched
 
   # Conditional instance count based on environment type
-  count = var.environment == "Production" ? 2 : 1
+  instance_count = var.environment == "Production" ? 2 : 1
 
   tags = {
     Terraform   = "true"
