@@ -1,0 +1,65 @@
+{
+    // --------------------------------------------------------------------------------------
+    // Variables
+    // Define user-provided AWS credentials for dynamic injection during build.
+    // These are typically passed via environment variables or a CLI.
+    // --------------------------------------------------------------------------------------
+    "variables": {
+        "aws_access_key": "",      // AWS access key (do not hardcode in production)
+        "aws_secret_key": ""       // AWS secret key (do not hardcode in production)
+    },
+
+    // --------------------------------------------------------------------------------------
+    // Builders
+    // Define the EC2 instance configuration used by Packer to create an AMI.
+    // --------------------------------------------------------------------------------------
+    "builders": [
+        {
+            "type": "amazon-ebs",                                 // Use Amazon EBS-backed AMI
+            "access_key": "{{user `aws_access_key`}}",            // Reference injected access key
+            "secret_key": "{{user `aws_secret_key`}}",            // Reference injected secret key
+            "region": "us-east-2",                                // AWS region for the EC2 instance
+
+            // Filter to select the most recent Ubuntu 22.04 AMI from Canonical
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",                 // Use HVM virtualization
+                    "name": "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*",  // AMI name pattern
+                    "root-device-type": "ebs"                     // Use EBS as root device
+                },
+                "owners": [
+                    "099720109477"                                // Canonical’s AWS account ID (official Ubuntu AMIs)
+                ],
+                "most_recent": true                               // Always use the latest AMI
+            },
+
+            "instance_type": "t2.micro",                          // Free-tier EC2 instance
+            "ssh_username": "ubuntu",                             // Default user for Ubuntu AMIs
+            "ami_name": "scenario1-packer-{{timestamp}}"          // Custom name for the new AMI
+        }
+    ],
+
+    // --------------------------------------------------------------------------------------
+    // Provisioners
+    // Define steps that Packer will execute on the EC2 instance to customize it.
+    // --------------------------------------------------------------------------------------
+    "provisioners": [
+        {
+            "type": "file",                                       // File provisioner to upload files
+            "source": "./helloworld.txt",                         // Local file to upload
+            "destination": "/home/ubuntu/"                        // Remote location on EC2 instance
+        },
+        {
+            "type": "shell",                                      // Inline shell commands provisioner
+            "inline": [
+                "ls -al /home/ubuntu",                            // List uploaded file for verification
+                "cat /home/ubuntu/helloworld.txt"                 // Print file content to console
+            ]
+        },
+        {
+            "type": "shell",                                      // External shell script provisioner
+            "script": "./install_nginx.sh"                        // Custom shell script to install Nginx or other tasks
+        }
+    ]
+}
+
