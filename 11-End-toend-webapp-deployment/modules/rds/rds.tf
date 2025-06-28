@@ -36,7 +36,7 @@ resource "aws_db_subnet_group" "levelup-rds-subnet-group" {
 resource "aws_security_group" "levelup-rds-sg" {
   name        = "${var.ENVIRONMENT}-levelup-rds-sg"
   description = "Created by LevelUp"
-  vpc_id      = module.levelup-vpc.vpc_id  # VPC ID from VPC module
+  vpc_id      = module.levelup-vpc.my_vpc_id  # VPC ID from VPC module
 
   ingress {
     from_port   = 3306                 # MySQL port
