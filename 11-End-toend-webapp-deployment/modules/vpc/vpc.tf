@@ -186,3 +186,4 @@ output "public_subnet2_id" {
   value       = aws_subnet.levelup_vpc_private_subnet_2.id
 }
 
+
