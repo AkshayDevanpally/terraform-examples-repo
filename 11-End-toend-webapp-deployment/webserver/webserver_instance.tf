@@ -71,7 +71,7 @@ resource "aws_security_group" "levelup_webservers" {
 # Define SSH key pair using public key file
 resource "aws_key_pair" "levelup_key" {
   key_name   = "levelup_key"
-  public_key = file(var.public_key_path)
+  public_key = file("${path.module}/../keys/levelup_key.pub")
 }
 
 # Create EC2 launch template for web servers
