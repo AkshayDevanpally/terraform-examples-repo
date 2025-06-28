@@ -14,14 +14,14 @@
 
 # Import VPC module to fetch VPC ID and subnets
 module "levelup-vpc" {
-  source      = "../modules/vpc"
+  source      = "../module/vpc"
   ENVIRONMENT = var.ENVIRONMENT
   AWS_REGION  = var.AWS_REGION
 }
 
 # Import RDS module, using private subnets and VPC from the VPC module
 module "levelup-rds" {
-  source                = "../modules/rds"
+  source                = "../module/rds"
   ENVIRONMENT           = var.ENVIRONMENT
   AWS_REGION            = var.AWS_REGION
   vpc_private_subnet1   = module.levelup-vpc.private_subnet1_id
