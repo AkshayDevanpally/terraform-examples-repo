@@ -10,14 +10,14 @@
 # This setup promotes modular infrastructure code that is reusable and environment-specific.
 #############################################################
 
-# Call the VPC module located at ./module/vpc
+# Call the VPC module located at ./modules/vpc
 # This module will create:
 # - a custom VPC
 # - public and private subnets
 # - routing
 # - internet gateway and NAT gateway if needed
 module "levelup-vpc" {
-  source      = "./module/vpc"
+  source      = "./modules/vpc"
 
   ENVIRONMENT = var.ENVIRONMENT
   AWS_REGION  = var.AWS_REGION
