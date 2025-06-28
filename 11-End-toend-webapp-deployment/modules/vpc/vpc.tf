@@ -88,7 +88,6 @@ resource "aws_internet_gateway" "levelup_igw" {
 
 # Allocate Elastic IP for NAT Gateway
 resource "aws_eip" "levelup_nat_eip" {
-  vpc        = true
   depends_on = [aws_internet_gateway.levelup_igw]  # Ensure IGW is created first
 }
 
