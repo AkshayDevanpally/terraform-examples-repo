@@ -26,38 +26,38 @@ module "levelup-rds" {
   AWS_REGION            = var.AWS_REGION
   vpc_private_subnet1   = module.levelup-vpc.private_subnet1_id
   vpc_private_subnet2   = module.levelup-vpc.private_subnet2_id
-  vpc_id                = module.levelup-vpc.vpc_id
+  vpc_id                = module.levelup-vpc.my_vpc_id
 }
 
 # Create a security group for web servers with SSH, HTTP, HTTPS access
 resource "aws_security_group" "levelup_webservers" {
   name        = "${var.ENVIRONMENT}-levelup-webservers"
   description = "Created by Levelup"
-  vpc_id      = module.levelup-vpc.vpc_id
+  vpc_id      = module.levelup-vpc.my_vpc_id
 
   ingress {
-    from_port   = 22      # SSH access
+    from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [var.SSH_CIDR_WEB_SERVER]
   }
 
   ingress {
-    from_port   = 80      # HTTP access
+    from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 443     # HTTPS access
+    from_port   = 443
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port   = 0       # Allow all outbound traffic
+    from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
@@ -77,13 +77,12 @@ resource "aws_key_pair" "levelup_key" {
 # Create EC2 launch template for web servers
 resource "aws_launch_template" "webserver_template" {
   name_prefix   = "webserver-launch-template-"
-  image_id      = lookup(var.AMIS, var.AWS_REGION)  # Select AMI per region
+  image_id      = lookup(var.AMIS, var.AWS_REGION)
   instance_type = var.INSTANCE_TYPE
   key_name      = aws_key_pair.levelup_key.key_name
 
   vpc_security_group_ids = [aws_security_group.levelup_webservers.id]
 
-  # User data script to install and start Nginx
   user_data = base64encode(<<EOF
 #!/bin/bash
 yum update -y
@@ -98,7 +97,7 @@ EOF
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
-      volume_size = 20         # 20 GB root volume
+      volume_size = 20
       volume_type = "gp2"
     }
   }
@@ -107,15 +106,15 @@ EOF
 # Define Auto Scaling Group with EC2 instances
 resource "aws_autoscaling_group" "levelup_webserver" {
   name                       = "levelup_WebServers"
-  max_size                   = 2              # Max number of instances
-  min_size                   = 1              # Minimum one instance
-  desired_capacity           = 1              # Start with one
+  max_size                   = 2
+  min_size                   = 1
+  desired_capacity           = 1
   health_check_grace_period  = 30
   health_check_type          = "EC2"
   vpc_zone_identifier        = [
     module.levelup-vpc.public_subnet1_id,
     module.levelup-vpc.public_subnet2_id
-  ]  # Launch into public subnets
+  ]
   target_group_arns          = [aws_lb_target_group.load_balancer_target_group.arn]
 
   launch_template {
@@ -133,7 +132,7 @@ resource "aws_autoscaling_group" "levelup_webserver" {
 # Create an Application Load Balancer
 resource "aws_lb" "levelup_load_balancer" {
   name               = "${var.ENVIRONMENT}-levelup-lb"
-  internal           = false                       # Public-facing
+  internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.levelup_webservers.id]
   subnets            = [
@@ -147,7 +146,7 @@ resource "aws_lb_target_group" "load_balancer_target_group" {
   name     = "load-balancer-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = module.levelup-vpc.vpc_id
+  vpc_id   = module.levelup-vpc.my_vpc_id
 }
 
 # Create a listener to forward traffic from ALB to target group
