@@ -46,62 +46,161 @@ This project involves:
 
 
 ---
-
-## 📄 Breakdown of Terraform Files
-
-### ✅ `main.tf`
-
-Sets up the **AWS provider**, targeting the `us-east-1` region with version control.
-
-
-provider "aws" {
-  region  = "us-east-1"
-  version = "~> 5.45.0"
-}
-
-
-Creates two EC2 instances using the count meta-argument and AMI ID.
-resource "aws_instance" "MyFirstInstnace" {
-  count         = 2
-  ami           = "ami-0e9bbd70d26d7cf4f"
-  instance_type = "t2.micro"
-  tags = {
-    Name = "demoinstnce-${count.index}"
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 📄 Breakdown of Terraform Files"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### ✅ `main.tf`\n",
+    "\n",
+    "Sets up the **AWS provider**, targeting the `us-east-1` region with version control."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "provider \"aws\" {\n",
+    "  region  = \"us-east-1\"\n",
+    "  version = \"~> 5.45.0\"\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Creates two EC2 instances using the `count` meta-argument and AMI ID."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "resource \"aws_instance\" \"MyFirstInstnace\" {\n",
+    "  count         = 2\n",
+    "  ami           = \"ami-0e9bbd70d26d7cf4f\"\n",
+    "  instance_type = \"t2.micro\"\n",
+    "  tags = {\n",
+    "    Name = \"demoinstnce-${count.index}\"\n",
+    "  }\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Defines a variable for demonstration purposes:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "variable \"myfirstvar\" {\n",
+    "  type    = string\n",
+    "  default = \"Hello! Welcome Terraform\"\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Variables enhance reusability and flexibility.\n",
+    "\n",
+    "🧩 **3 Common Ways to Use Variables:**\n",
+    "\n",
+    "1. **Default values** (as seen in `myvar.tf`)\n",
+    "2. **Command-line override**  \n",
+    "`terraform apply -var=\"myfirstvar=CustomMessage\"`\n",
+    "3. **Variable files** (`*.tfvars`)  \n",
+    "`terraform apply -var-file=\"custom.tfvars\"`"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 🚀 How to Run This Setup:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# Initialize the working directory\n",
+    "terraform init"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# Review changes to be made\n",
+    "terraform plan"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "# Apply the configuration and create resources\n",
+    "terraform apply"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "📌 **Don’t forget to export your AWS credentials before starting:**"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "execution_count": null,
+   "outputs": [],
+   "source": [
+    "export AWS_ACCESS_KEY_ID=your_key\n",
+    "export AWS_SECRET_ACCESS_KEY=your_secret"
+   ]
   }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Terraform Guide",
+   "language": "markdown",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "markdown"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
 }
-
-Defines a variable for demonstration purposes:
-variable "myfirstvar" {
-  type    = string
-  default = "Hello! Welcome Terraform"
-}
-
-Variables enhance reusability and flexibility.
-
-🧩 3 Common Ways to Use Variables:
-Default values (as seen in myvar.tf)
-
-Command-line override
-terraform apply -var="myfirstvar=CustomMessage"
-
-Variable files (*.tfvars)
-terraform apply -var-file="custom.tfvars"
-
-Here’s how to run this setup:
-
-# Initialize the working directory
-terraform init
-
-# Review changes to be made
-terraform plan
-
-# Apply the configuration and create resources
-terraform apply
-
-📌 Don’t forget to export your AWS credentials before starting:
-
-export AWS_ACCESS_KEY_ID=your_key
-export AWS_SECRET_ACCESS_KEY=your_secret
 
 
 
