@@ -17,7 +17,7 @@ Variables let us **parameterize configurations**, eliminate hardcoding, and supp
 ```
 
 ![AWS EC2 Setup](./day2.drawio.png)
-![How it works](./img2.png)
+<img src="./img2.png" alt="How it works" width="400"/>
 
 
 ## 🧠 Types of Variables Used
